@@ -1,7 +1,9 @@
 using CSS.Encuestas.Application.Interfaces;
 using CSS.Encuestas.Application.Services;
+using CSS.Encuestas.Infrastructure.Options;
 using CSS.Encuestas.Infrastructure.Persistence;
 using CSS.Encuestas.Infrastructure.Repositories;
+using CSS.Encuestas.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,6 +53,9 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddScoped<IEncuestaRepository, EncuestaEfCoreRepository>();
 builder.Services.AddScoped<IEncuestaService, EncuestaService>();
 
+builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp"));
+builder.Services.AddScoped<IEmailService, MailKitEmailService>();
+
 
 // Habilita CORS para todos los orígenes
 builder.Services.AddCors(options =>
@@ -70,6 +75,19 @@ builder.Services.AddCors(options =>
 
 
 var app = builder.Build();
+
+
+app.MapGet("/", async (IEmailService emailSender) =>
+{
+    await emailSender.SendAsync(
+        "joseriospacheco@gmail.com",
+        "Prueba de correo",
+        "<h1>¡Hola desde MailKit!</h1><p>Este es un mensaje de prueba.</p>"
+    );
+    return "Correo enviado ";
+});
+
+
 app.UseCors("PoliticaLibre");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
