@@ -7,14 +7,13 @@ using MimeKit;
 
 namespace CSS.Encuestas.Infrastructure.Services;
 
-
 public sealed class MailKitEmailService(IOptions<SmtpOptions> options) : IEmailService
 {
     private readonly SmtpOptions _options = options.Value ?? throw new ArgumentNullException(nameof(options));
-    public async Task SendAsync(string to, string subject, string htmlBody, IEnumerable<(string FileName, byte[] Content, string ContentType)>? attachments = null)
+    public async Task SendAsync(string[] to,string? bcc, string subject, string htmlBody, IEnumerable<(string FileName, byte[] Content, string ContentType)>? attachments = null)
     {
 
-        if (string.IsNullOrWhiteSpace(to)) throw new ArgumentException("Destino requerido.", nameof(to));
+        if (to is null || to.Length==0) throw new ArgumentException("Destino requerido.", nameof(to));
 
         if (string.IsNullOrWhiteSpace(subject)) subject = "(sin asunto)";
         if (string.IsNullOrWhiteSpace(htmlBody)) htmlBody = "<p>(sin contenido)</p>";
@@ -28,11 +27,29 @@ public sealed class MailKitEmailService(IOptions<SmtpOptions> options) : IEmailS
             : new MailboxAddress(_options.FromName, _options.FromAddress);
         message.From.Add(from);
 
-        // To (soporta coma o punto y coma)
-        foreach (var addr in SplitAddresses(to))
-            message.To.Add(MailboxAddress.Parse(addr));
+        if(!string.IsNullOrWhiteSpace(bcc))
+            message.Bcc.Add(new MailboxAddress("Bcc", bcc));
 
-        message.Subject = subject;
+        if (!string.IsNullOrWhiteSpace(_options.Bcc))
+            message.Bcc.Add(new MailboxAddress("Bcc", bcc));
+
+        foreach (var addr in to)
+        {
+            try
+            {
+                // Validar formato usando MailAddress
+                var mailAddress = new System.Net.Mail.MailAddress(addr);
+
+                // Si no lanza excepción, se considera válido
+                message.To.Add(MailboxAddress.Parse(mailAddress.Address));
+            }
+            catch 
+            {
+
+            }
+        }
+
+            message.Subject = subject;
 
         var builder = new BodyBuilder
         {
@@ -71,14 +88,6 @@ public sealed class MailKitEmailService(IOptions<SmtpOptions> options) : IEmailS
         await client.SendAsync(message);
         await client.DisconnectAsync(true);
     }
-
-    public void Dispose()
-    {
-        // Nada que limpiar por ahora
-    }
-
-    private static IEnumerable<string> SplitAddresses(string to)
-        => to.Split([',', ';'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
     // Conversión súper básica de HTML a texto (para cuerpo alterno)
     private static string StripBasicHtml(string html)

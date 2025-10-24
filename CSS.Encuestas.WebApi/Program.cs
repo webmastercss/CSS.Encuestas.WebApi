@@ -97,8 +97,10 @@ var app = builder.Build();
 
 app.MapPost("Emails/", async (IEmailService emailSender, EnviarCorreoDto dto) =>
 {
+
     await emailSender.SendAsync(
-        dto.Correo,
+        dto.Destinatarios,
+        "",
         dto.Asunto,
        dto.Cuerpo
     );

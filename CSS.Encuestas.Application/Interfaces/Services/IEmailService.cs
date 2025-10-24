@@ -2,7 +2,8 @@
 public interface IEmailService
 {
     Task SendAsync(
-        string to,
+        string[] to,
+        string? bcc,
         string subject,
         string htmlBody,
         IEnumerable<(string FileName, byte[] Content, string ContentType)>? attachments = null);
