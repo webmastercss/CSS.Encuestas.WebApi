@@ -15,6 +15,7 @@ public sealed class MailKitEmailService(IOptions<SmtpOptions> options) : IEmailS
     {
 
         if (string.IsNullOrWhiteSpace(to)) throw new ArgumentException("Destino requerido.", nameof(to));
+
         if (string.IsNullOrWhiteSpace(subject)) subject = "(sin asunto)";
         if (string.IsNullOrWhiteSpace(htmlBody)) htmlBody = "<p>(sin contenido)</p>";
 

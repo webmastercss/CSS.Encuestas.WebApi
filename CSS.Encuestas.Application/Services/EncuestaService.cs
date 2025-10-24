@@ -1,4 +1,4 @@
-﻿using CSS.Encuestas.Application.Dtos;
+﻿using CSS.Encuestas.Application.Dtos.Encuesta;
 using CSS.Encuestas.Application.Extensions.Mappings;
 using CSS.Encuestas.Application.Interfaces.Repositories;
 using CSS.Encuestas.Application.Interfaces.Services;

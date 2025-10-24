@@ -1,4 +1,4 @@
-﻿using CSS.Encuestas.Application.Dtos;
+﻿using CSS.Encuestas.Application.Dtos.Encuesta;
 using CSS.Encuestas.Domain.Entities;
 
 namespace CSS.Encuestas.Application.Interfaces.Services;

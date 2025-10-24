@@ -1,4 +1,4 @@
-﻿namespace CSS.Encuestas.Application.Dtos;
+﻿namespace CSS.Encuestas.Application.Dtos.Encuesta;
 
 using CSS.Encuestas.Application.Attributes;
 using System.ComponentModel.DataAnnotations;

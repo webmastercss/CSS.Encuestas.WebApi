@@ -1,3 +1,4 @@
+using CSS.Encuestas.Application.Dtos;
 using CSS.Encuestas.Application.Interfaces.Repositories;
 using CSS.Encuestas.Application.Interfaces.Services;
 using CSS.Encuestas.Application.Services;
@@ -7,6 +8,8 @@ using CSS.Encuestas.Infrastructure.Repositories;
 using CSS.Encuestas.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,11 +53,31 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 });
 
 
+
+
+
+
+//Inyección de opciones 
+builder.Services.Configure<ApiIpsOptions>(builder.Configuration.GetSection("Ips"));
+builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp"));
+
+//Inyección de repositorios
 //builder.Services.AddScoped<IEncuestaRepository, EncuestaAdoRepository>();
 builder.Services.AddScoped<IEncuestaRepository, EncuestaEfCoreRepository>();
+
+//Inyección de servicios
 builder.Services.AddScoped<IEncuestaService, EncuestaService>();
 
-builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp"));
+
+
+
+builder.Services.AddHttpClient<IIpsService, IpsService>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
+
+
+//builder.Services.AddScoped<IIpsService, IpsService>();
 builder.Services.AddScoped<IEmailService, MailKitEmailService>();
 
 
@@ -69,27 +92,41 @@ builder.Services.AddCors(options =>
     });
 });
 
-
-
-// Usa la política de CORS
-
-
-
 var app = builder.Build();
 
 
-app.MapGet("/", async (IEmailService emailSender) =>
+app.MapPost("Emails/", async (IEmailService emailSender, EnviarCorreoDto dto) =>
 {
     await emailSender.SendAsync(
-        "joseriospacheco@gmail.com",
-        "Prueba de correo",
-        "<h1>¡Hola desde MailKit!</h1><p>Este es un mensaje de prueba.</p>"
+        dto.Correo,
+        dto.Asunto,
+       dto.Cuerpo
     );
-    return "Correo enviado ";
+
+    return Results.Ok(new { message = "Correo enviado" });
 });
 
 
+app.UseExceptionHandler(appBuilder =>
+{
+    appBuilder.Run(async context =>
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json";
+
+        await context.Response.WriteAsJsonAsync(new
+        {
+            message = "Ocurrió un error interno en el servidor."
+        });
+    });
+});
+
+
+
+// Usa la política de CORS
 app.UseCors("PoliticaLibre");
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -1,4 +1,4 @@
-﻿namespace CSS.Encuestas.Application.Dtos;
+﻿namespace CSS.Encuestas.Application.Dtos.Encuesta;
 public record EncuestaRealizadaDto
 {
     public int Id { get; init; }

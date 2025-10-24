@@ -1,4 +1,12 @@
 ﻿namespace CSS.Encuestas.Domain.Exceptions;
-public class BusinessRoleException(string mesage) : Exception(mesage)
+public class BusinessRoleException: Exception
 {
+    public BusinessRoleException():base("Business rule violation: Operation cannot be completed due to business constraints.")
+    {
+      
+    }
+
+    public BusinessRoleException(string? message) : base(message)
+    {
+    }
 }

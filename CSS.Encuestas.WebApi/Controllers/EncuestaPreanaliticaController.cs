@@ -1,11 +1,10 @@
-﻿using CSS.Encuestas.Application.Dtos;
+﻿using CSS.Encuestas.Application.Dtos.Encuesta;
 using CSS.Encuestas.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CSS.Encuestas.WebApi.Controllers;
-[Route("api/[controller]")]
-[ApiController]
-public class EncuestaPreanaliticaController(IEncuestaService service, ILogger<EncuestaPreanaliticaController> logger) : ControllerBase
+
+public class EncuestaPreanaliticaController(IEncuestaService service, ILogger<EncuestaPreanaliticaController> logger) : RestController
 {
     // POST: /api/EncuestaPreanalitica
     [HttpPost]
@@ -19,7 +18,7 @@ public class EncuestaPreanaliticaController(IEncuestaService service, ILogger<En
         catch (Exception ex)
         {
             logger.LogError(ex, "Error en POST /api/EncuestaPreanalitica");
-            return StatusCode(500, "Error al agregar la Encuesta");
+            return InternalServerError("Error al agregar la Encuesta");
         }
     }
 }
