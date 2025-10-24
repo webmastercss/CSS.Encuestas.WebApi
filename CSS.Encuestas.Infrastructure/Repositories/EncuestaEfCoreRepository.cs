@@ -1,4 +1,4 @@
-﻿using CSS.Encuestas.Application.Interfaces;
+﻿using CSS.Encuestas.Application.Interfaces.Repositories;
 using CSS.Encuestas.Domain.Entities;
 using CSS.Encuestas.Infrastructure.Persistence;
 

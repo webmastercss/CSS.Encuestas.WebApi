@@ -1,5 +1,5 @@
 ﻿using CSS.Encuestas.Application.Dtos;
-using CSS.Encuestas.Application.Interfaces;
+using CSS.Encuestas.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CSS.Encuestas.WebApi.Controllers;

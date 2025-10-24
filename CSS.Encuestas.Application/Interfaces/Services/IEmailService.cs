@@ -1,10 +1,9 @@
-﻿namespace CSS.Encuestas.Application.Interfaces;
+﻿namespace CSS.Encuestas.Application.Interfaces.Services;
 public interface IEmailService
 {
     Task SendAsync(
         string to,
         string subject,
         string htmlBody,
-        CancellationToken ct = default,
         IEnumerable<(string FileName, byte[] Content, string ContentType)>? attachments = null);
 }

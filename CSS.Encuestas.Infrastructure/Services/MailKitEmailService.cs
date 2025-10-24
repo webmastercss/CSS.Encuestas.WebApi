@@ -1,4 +1,4 @@
-﻿using CSS.Encuestas.Application.Interfaces;
+﻿using CSS.Encuestas.Application.Interfaces.Services;
 using CSS.Encuestas.Infrastructure.Options;
 using MailKit.Net.Smtp;
 using MailKit.Security;
@@ -11,8 +11,7 @@ namespace CSS.Encuestas.Infrastructure.Services;
 public sealed class MailKitEmailService(IOptions<SmtpOptions> options) : IEmailService
 {
     private readonly SmtpOptions _options = options.Value ?? throw new ArgumentNullException(nameof(options));
-
-    public async Task SendAsync(string to, string subject, string htmlBody, CancellationToken ct = default, IEnumerable<(string FileName, byte[] Content, string ContentType)>? attachments = null)
+    public async Task SendAsync(string to, string subject, string htmlBody, IEnumerable<(string FileName, byte[] Content, string ContentType)>? attachments = null)
     {
 
         if (string.IsNullOrWhiteSpace(to)) throw new ArgumentException("Destino requerido.", nameof(to));
@@ -63,13 +62,13 @@ public sealed class MailKitEmailService(IOptions<SmtpOptions> options) : IEmailS
         // Si tu servidor usa certificados self-signed en dev:
         // client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-        await client.ConnectAsync(_options.Host, _options.Port, SecureSocketOptions.StartTls, ct);
+        await client.ConnectAsync(_options.Host, _options.Port, SecureSocketOptions.StartTls);
         // Si el servidor no soporta autenticación anónima:
         if (!string.IsNullOrWhiteSpace(_options.FromAddress))
-            await client.AuthenticateAsync(_options.FromAddress, _options.Password, ct);
+            await client.AuthenticateAsync(_options.FromAddress, _options.Password);
 
-        await client.SendAsync(message, ct);
-        await client.DisconnectAsync(true, ct);
+        await client.SendAsync(message);
+        await client.DisconnectAsync(true);
     }
 
     public void Dispose()
@@ -78,7 +77,7 @@ public sealed class MailKitEmailService(IOptions<SmtpOptions> options) : IEmailS
     }
 
     private static IEnumerable<string> SplitAddresses(string to)
-        => to.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        => to.Split([',', ';'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
     // Conversión súper básica de HTML a texto (para cuerpo alterno)
     private static string StripBasicHtml(string html)
