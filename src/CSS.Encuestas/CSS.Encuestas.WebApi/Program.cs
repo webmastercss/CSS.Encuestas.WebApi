@@ -4,13 +4,10 @@ using CSS.Encuestas.Application.Interfaces.Services;
 using CSS.Encuestas.Application.Services;
 using CSS.Encuestas.Infrastructure.Data;
 using CSS.Encuestas.Infrastructure.Options;
-using CSS.Encuestas.Infrastructure.Persistence;
 using CSS.Encuestas.Infrastructure.Repositories;
 using CSS.Encuestas.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +25,7 @@ builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("local");
 // EF Core
-builder.Services.AddDbContext<AppDbContext>(opt =>
+builder.Services.AddDbContext<EncuestasDbContext>(opt =>
     opt.UseSqlServer(connectionString));
 
 //Perzonalizar respuestas
@@ -68,21 +65,14 @@ builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp")
 
 //Inyección de repositorios
 //builder.Services.AddScoped<IEncuestaRepository, EncuestaAdoRepository>();
-builder.Services.AddScoped<IEncuestaRepository, EncuestaEfCoreRepository>();
+builder.Services.AddScoped<IRespuestaRepository, RespuestaRepository>();
+builder.Services.AddScoped<IEncuestaRepository, EncuestaRepository>();
 
 //Inyección de servicios
+builder.Services.AddScoped<IRespuestaService, RespuestaService>();
 builder.Services.AddScoped<IEncuestaService, EncuestaService>();
 
 
-
-
-builder.Services.AddHttpClient<IIpsService, IpsService>(client =>
-{
-    client.Timeout = TimeSpan.FromSeconds(30);
-});
-
-
-//builder.Services.AddScoped<IIpsService, IpsService>();
 //builder.Services.AddScoped<IEmailService, IpsService>();
 builder.Services.AddScoped<IEmailService, NetMailEmailService>();
 
@@ -115,6 +105,7 @@ app.MapPost("Emails/", async (IEmailService emailSender, EnviarCorreoDto dto) =>
 });
 
 
+
 app.UseExceptionHandler(appBuilder =>
 {
     appBuilder.Run(async context =>
@@ -128,6 +119,7 @@ app.UseExceptionHandler(appBuilder =>
         });
     });
 });
+
 
 
 
