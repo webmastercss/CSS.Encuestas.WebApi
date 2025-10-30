@@ -1,0 +1,60 @@
+{
+  "titulo": "Encuesta sobre Hábitos de Estudio",
+  "descripcion": "Este formulario busca conocer los hábitos de estudio de los estudiantes para mejorar los procesos académicos.",
+  "preguntas": [
+    {
+      "texto": "¿Cuál es tu nombre completo?",
+      "tipo": 1,
+      "esObligatoria": true,
+      "orden": 1
+    },
+    {
+      "texto": "¿Cuántas horas dedicas al estudio fuera del horario de clases?",
+      "tipo": 5,
+      "esObligatoria": true,
+      "orden": 2,
+      "escalaMin": 0,
+      "escalaMax": 10
+    },
+    {
+      "texto": "¿Qué momento del día prefieres para estudiar?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 3,
+      "opciones": [
+        { "texto": "Mañana", "orden": 1 },
+        { "texto": "Tarde", "orden": 2 },
+        { "texto": "Noche", "orden": 3 }
+      ]
+    },
+    {
+      "texto": "Selecciona los recursos que utilizas con mayor frecuencia al estudiar.",
+      "tipo": 4,
+      "esObligatoria": false,
+      "orden": 4,
+      "opciones": [
+        { "texto": "Libros impresos", "orden": 1 },
+        { "texto": "Videos educativos", "orden": 2 },
+        { "texto": "Apuntes personales", "orden": 3 },
+        { "texto": "Plataformas virtuales", "orden": 4 }
+      ]
+    },
+    {
+      "texto": "¿Consideras que tu entorno de estudio es adecuado?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 5,
+      "opciones": [
+        { "texto": "Sí, totalmente", "orden": 1 },
+        { "texto": "Parcialmente", "orden": 2 },
+        { "texto": "No, necesito mejorarlo", "orden": 3 }
+      ]
+    },
+    {
+      "texto": "Describe brevemente qué cambios harías para mejorar tu concentración o rendimiento académico.",
+      "tipo": 2,
+      "esObligatoria": false,
+      "orden": 6
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "titulo": "Encuesta de Satisfacción del Servicio Educativo",
+  "descripcion": "Este formulario busca conocer tu percepción sobre la calidad del servicio educativo recibido en la institución.",
+  "preguntas": [
+    {
+      "texto": "¿Cuál es tu nombre completo?",
+      "tipo": 1,
+      "esObligatoria": true,
+      "orden": 1
+    },
+    {
+      "texto": "¿Qué tan satisfecho te sientes con la atención recibida por parte de los docentes?",
+      "tipo": 5,
+      "esObligatoria": true,
+      "orden": 2,
+      "escalaMin": 1,
+      "escalaMax": 5
+    },
+    {
+      "texto": "¿Qué medio utilizas con mayor frecuencia para comunicarte con el personal académico?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 3,
+      "opciones": [
+        { "texto": "Correo institucional", "orden": 1 },
+        { "texto": "WhatsApp", "orden": 2 },
+        { "texto": "Plataforma virtual", "orden": 3 },
+        { "texto": "Llamada telefónica", "orden": 4 }
+      ]
+    },
+    {
+      "texto": "Selecciona los aspectos que consideras más positivos del servicio educativo.",
+      "tipo": 4,
+      "esObligatoria": false,
+      "orden": 4,
+      "opciones": [
+        { "texto": "Atención personalizada", "orden": 1 },
+        { "texto": "Cumplimiento de horarios", "orden": 2 },
+        { "texto": "Recursos tecnológicos disponibles", "orden": 3 },
+        { "texto": "Ambiente de aprendizaje agradable", "orden": 4 }
+      ]
+    },
+    {
+      "texto": "¿Qué sugerencias tienes para mejorar la calidad del servicio educativo?",
+      "tipo": 2,
+      "esObligatoria": false,
+      "orden": 5
+    }
+  ]
+}

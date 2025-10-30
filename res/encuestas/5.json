@@ -1,0 +1,85 @@
+{
+  "titulo": "Encuesta de Satisfacción en el Servicio de Salud",
+  "descripcion": "Esta encuesta busca conocer la percepción de los pacientes sobre la atención recibida en la institución de salud. Tus respuestas nos ayudarán a mejorar la calidad del servicio.",
+  "preguntas": [
+    {
+      "texto": "¿Cuál es su nombre completo?",
+      "tipo": 1,
+      "esObligatoria": true,
+      "orden": 1
+    },
+    {
+      "texto": "¿En qué área o servicio fue atendido?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 2,
+      "opciones": [
+        { "texto": "Consulta general", "orden": 1 },
+        { "texto": "Urgencias", "orden": 2 },
+        { "texto": "Pediatría", "orden": 3 },
+        { "texto": "Ginecología", "orden": 4 },
+        { "texto": "Medicina especializada", "orden": 5 }
+      ]
+    },
+    {
+      "texto": "¿Cómo calificaría el trato recibido por parte del personal de salud?",
+      "tipo": 5,
+      "esObligatoria": true,
+      "orden": 3,
+      "escalaMin": 1,
+      "escalaMax": 5
+    },
+    {
+      "texto": "¿El tiempo de espera para ser atendido le pareció adecuado?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 4,
+      "opciones": [
+        { "texto": "Sí, fue razonable", "orden": 1 },
+        { "texto": "Aceptable", "orden": 2 },
+        { "texto": "No, fue demasiado largo", "orden": 3 }
+      ]
+    },
+    {
+      "texto": "Seleccione los aspectos que considera positivos de la atención recibida.",
+      "tipo": 4,
+      "esObligatoria": false,
+      "orden": 5,
+      "opciones": [
+        { "texto": "Amabilidad del personal", "orden": 1 },
+        { "texto": "Rapidez en la atención", "orden": 2 },
+        { "texto": "Limpieza de las instalaciones", "orden": 3 },
+        { "texto": "Claridad en las explicaciones médicas", "orden": 4 },
+        { "texto": "Seguridad en el procedimiento", "orden": 5 }
+      ]
+    },
+    {
+      "texto": "¿Recibió la información necesaria sobre su diagnóstico o tratamiento?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 6,
+      "opciones": [
+        { "texto": "Sí, completamente", "orden": 1 },
+        { "texto": "Parcialmente", "orden": 2 },
+        { "texto": "No, me faltó información", "orden": 3 }
+      ]
+    },
+    {
+      "texto": "¿Recomendaría esta institución de salud a familiares o amigos?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 7,
+      "opciones": [
+        { "texto": "Sí, sin dudarlo", "orden": 1 },
+        { "texto": "Tal vez", "orden": 2 },
+        { "texto": "No la recomendaría", "orden": 3 }
+      ]
+    },
+    {
+      "texto": "Por favor, comparta cualquier sugerencia o comentario adicional sobre el servicio recibido.",
+      "tipo": 2,
+      "esObligatoria": false,
+      "orden": 8
+    }
+  ]
+}

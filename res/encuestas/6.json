@@ -1,0 +1,87 @@
+{
+  "titulo": "Encuesta de Bienestar Emocional y Salud Mental",
+  "descripcion": "Esta encuesta busca identificar cómo te has sentido en las últimas dos semanas para orientar acciones de acompañamiento emocional y apoyo psicosocial. Tus respuestas son confidenciales.",
+  "preguntas": [
+    {
+      "texto": "Edad de la persona encuestada",
+      "tipo": 1,
+      "esObligatoria": true,
+      "orden": 1
+    },
+    {
+      "texto": "En las últimas dos semanas, ¿con qué frecuencia te has sentido nervioso(a), ansioso(a) o tenso(a)?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 2,
+      "opciones": [
+        { "texto": "Casi nunca", "orden": 1 },
+        { "texto": "Algunas veces", "orden": 2 },
+        { "texto": "Con frecuencia", "orden": 3 },
+        { "texto": "Casi todo el tiempo", "orden": 4 }
+      ]
+    },
+    {
+      "texto": "Califica tu nivel general de estrés actualmente.",
+      "tipo": 5,
+      "esObligatoria": true,
+      "orden": 3,
+      "escalaMin": 1,
+      "escalaMax": 10
+    },
+    {
+      "texto": "En las últimas dos semanas, ¿qué síntomas has presentado con más frecuencia?",
+      "tipo": 4,
+      "esObligatoria": false,
+      "orden": 4,
+      "opciones": [
+        { "texto": "Dificultad para dormir", "orden": 1 },
+        { "texto": "Cansancio o agotamiento constante", "orden": 2 },
+        { "texto": "Cambios fuertes en el estado de ánimo", "orden": 3 },
+        { "texto": "Tristeza o desánimo", "orden": 4 },
+        { "texto": "Preocupación constante", "orden": 5 },
+        { "texto": "Ninguno de los anteriores", "orden": 6 }
+      ]
+    },
+    {
+      "texto": "¿Sientes que cuentas con apoyo emocional (familia, pareja, amigos, red cercana) cuando lo necesitas?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 5,
+      "opciones": [
+        { "texto": "Sí, siempre", "orden": 1 },
+        { "texto": "A veces", "orden": 2 },
+        { "texto": "Casi nunca", "orden": 3 },
+        { "texto": "No cuento con apoyo", "orden": 4 }
+      ]
+    },
+    {
+      "texto": "¿Con qué frecuencia has sentido dificultad para concentrarte en tareas cotidianas (trabajo, estudio, responsabilidades en casa)?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 6,
+      "opciones": [
+        { "texto": "Casi nunca", "orden": 1 },
+        { "texto": "A veces", "orden": 2 },
+        { "texto": "Con frecuencia", "orden": 3 },
+        { "texto": "Casi todo el tiempo", "orden": 4 }
+      ]
+    },
+    {
+      "texto": "En términos generales, ¿cómo describirías tu bienestar emocional actual?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 7,
+      "opciones": [
+        { "texto": "Bien / estable", "orden": 1 },
+        { "texto": "Algo inestable", "orden": 2 },
+        { "texto": "Bastante afectado(a)", "orden": 3 }
+      ]
+    },
+    {
+      "texto": "Si deseas, describe alguna situación personal que esté afectando tu bienestar emocional o mental en este momento.",
+      "tipo": 2,
+      "esObligatoria": false,
+      "orden": 8
+    }
+  ]
+}
