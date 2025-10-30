@@ -1,0 +1,58 @@
+{
+  "titulo": "Encuesta de Satisfacción del Servicio al Cliente",
+  "descripcion": "Esta encuesta busca conocer tu experiencia y nivel de satisfacción con el servicio recibido. Tus respuestas nos ayudarán a mejorar.",
+  "preguntas": [
+    {
+      "texto": "¿Cuál es tu nombre completo?",
+      "tipo": 1,
+      "esObligatoria": true,
+      "orden": 1
+    },
+    {
+      "texto": "¿Qué tan satisfecho te sientes con la atención brindada?",
+      "tipo": 5,
+      "esObligatoria": true,
+      "orden": 2,
+      "escalaMin": 1,
+      "escalaMax": 5
+    },
+    {
+      "texto": "¿Cuál fue el canal que utilizaste para recibir atención?",
+      "tipo": 3,
+      "esObligatoria": true,
+      "orden": 3,
+      "opciones": [
+        { "texto": "Presencial", "orden": 1 },
+        { "texto": "Telefónica", "orden": 2 },
+        { "texto": "Correo electrónico", "orden": 3 },
+        { "texto": "Chat en línea", "orden": 4 }
+      ]
+    },
+    {
+      "texto": "Selecciona los aspectos que consideras más positivos de nuestro servicio.",
+      "tipo": 4,
+      "esObligatoria": false,
+      "orden": 4,
+      "opciones": [
+        { "texto": "Amabilidad del personal", "orden": 1 },
+        { "texto": "Rapidez en la atención", "orden": 2 },
+        { "texto": "Claridad en la información", "orden": 3 },
+        { "texto": "Instalaciones cómodas", "orden": 4 }
+      ]
+    },
+    {
+      "texto": "¿Qué tan probable es que recomiendes nuestro servicio a otras personas?",
+      "tipo": 5,
+      "esObligatoria": true,
+      "orden": 5,
+      "escalaMin": 1,
+      "escalaMax": 10
+    },
+    {
+      "texto": "Por favor, escribe tus sugerencias o comentarios adicionales.",
+      "tipo": 2,
+      "esObligatoria": false,
+      "orden": 6
+    }
+  ]
+}

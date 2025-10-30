@@ -1,0 +1,32 @@
+POST /api/encuestas
+Content-Type: application/json
+
+{
+  "titulo": "Satisfacción del servicio",
+  "descripcion": "Cuestionario breve",
+  "preguntas": [
+    {
+      "texto": "¿Qué tan satisfecho estás con el servicio?",
+      "tipo": 5,
+      "escalaMin": 1,
+      "escalaMax": 5,
+      "orden": 1
+    },
+    {
+      "texto": "¿Cuál fue el canal de atención que usaste?",
+      "tipo": 3,
+      "orden": 2,
+      "opciones": [
+        { "texto": "WhatsApp", "orden": 1 },
+        { "texto": "Teléfono", "orden": 2 },
+        { "texto": "Correo", "orden": 3 }
+      ]
+    },
+    {
+      "texto": "Comentarios adicionales",
+      "tipo": 2,
+      "esObligatoria": false,
+      "orden": 3
+    }
+  ]
+}
